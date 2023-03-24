@@ -117,9 +117,9 @@ const singleCourse = ({course}) => {
                 setShowModal={setShowModal}
                 preview={preview}
             />
-            {course.lessions && (
+            {course.lessons && (
                 <SingleCourseLessons
-                    lessions={course.lessions}
+                    lessons={course.lessons}
                     setPreview={setPreview}
                     showModal={showModal}
                     setShowModal={setShowModal}

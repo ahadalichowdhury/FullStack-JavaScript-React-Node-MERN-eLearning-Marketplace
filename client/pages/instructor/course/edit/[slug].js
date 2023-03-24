@@ -18,7 +18,7 @@ const CourseEdit = () => {
     paid: true,
     category: "",
     loading: false,
-    lessions: [],
+    lessons: [],
   });
 
   const [image, setImage] = useState({});
@@ -103,17 +103,17 @@ const CourseEdit = () => {
     // console.log("Drop", index);
     const movingItemIndex = e.dataTransfer.getData("itemIndex");
     const targetItemIndex = index;
-    let allLessons = values.lessions;
+    let allLessons = values.lessons;
     let movingItem = allLessons[movingItemIndex]; //click / drag item to reorder
     allLessons.splice(movingItemIndex, 1); //remove 1 item form the given index
     allLessons.splice(targetItemIndex, 0, movingItem); //add item to the given index
-    setValues({ ...values, lessions: allLessons }); //update the state
+    setValues({ ...values, lessons: allLessons }); //update the state
 
     //save the new lesson list in db
     axios
       .put(`/api/v1/course/${slug}`, {
         ...values,
-        lessions: allLessons,
+        lessons: allLessons,
       })
       .then((res) => {
         toast.success("Lessons re-ordered successfully.");
@@ -126,11 +126,11 @@ const CourseEdit = () => {
   const handleDelete = async (index) => {
     const answer = window.confirm("Are You Sure want to delete?");
     if (!answer) return;
-    let allLessons = values.lessions;
+    let allLessons = values.lessons;
     const remove = allLessons.splice(index, 1);
     // console.log("removed Item", remove[0]._id);
 
-    setValues({ ...values, lessions: allLessons });
+    setValues({ ...values, lessons: allLessons });
 
     //send request to server
     try {
@@ -213,13 +213,13 @@ const CourseEdit = () => {
 
       <div className="row pb-5">
         <div className="col lesson-list">
-          <h4>{values && values.lessions && values.lessions.length} lessons</h4>
+          <h4>{values && values.lessons && values.lessons.length} lessons</h4>
         </div>
-        {values && values.lessions && (
+        {values && values.lessons && (
           <List
             onDragOver={(e) => e.preventDefault()}
             itemLayout="horizontal"
-            dataSource={values.lessions}
+            dataSource={values.lessons}
             renderItem={(item, index) => (
               <List.Item
                 draggable

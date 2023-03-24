@@ -25,7 +25,7 @@ const CourseCreateForm = ({
                       <input
                           type="text"
                           name="name"
-                          className="form-control"
+                          className="form-control mt-2 mb-2"
                           placeholder="Name"
                           value={values.name}
                           onChange={handleChange}
@@ -38,7 +38,7 @@ const CourseCreateForm = ({
             cols="7"
             rows="7"
             value={values.description}
-            className="form-control"
+            className="form-control mt-2 mb-2"
             onChange={handleChange}
         ></textarea>
                   </div>
@@ -58,7 +58,7 @@ const CourseCreateForm = ({
                       </div>
 
                       {values.paid && (
-                          <div className="form-group">
+                          <div className="form-group mt-2 mb-2">
                               <Select
                                   defaultValue="$9.99"
                                   style={{ width: "100%" }}
@@ -76,7 +76,7 @@ const CourseCreateForm = ({
                       <input
                           type="text"
                           name="category"
-                          className="form-control"
+                          className="form-control mt-2 mb-2"
                           placeholder="Category"
                           value={values.category}
                           onChange={handleChange}
@@ -86,7 +86,7 @@ const CourseCreateForm = ({
                   <div className="form-row">
                       <div className="col">
                           <div className="form-group">
-                              <label className="btn btn-outline-secondary btn-block text-left">
+                              <label className="btn btn-outline-secondary btn-block text-left mt-2 mb-2">
                                   {uploadButtonText}
                                   <input
                                       type="file"
@@ -100,7 +100,7 @@ const CourseCreateForm = ({
                       </div>
 
                       {preview && (
-                          <Badge count="X" onClick={handleImageRemove} className="pointer">
+                          <Badge count="X" onClick={handleImageRemove} className="pointer mt-4 mb-4">
                               <Avatar width={200} src={preview} />
                           </Badge>
                       )}
@@ -118,7 +118,7 @@ const CourseCreateForm = ({
                           <Button
                               onClick={handleSubmit}
                               disabled={values.loading || values.uploading}
-                              className="btn btn-primary btn-block"
+                              className="btn btn-primary btn-block mt4 mb-4"
                               loading={values.loading}
                               type="primary"
                               size="large"

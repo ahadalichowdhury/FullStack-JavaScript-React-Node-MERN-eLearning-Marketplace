@@ -162,7 +162,7 @@ const CourseView = () => {
                   <div className="col">
                     <h5 className="mt-5 text-primary">{course.name}</h5>
                     <p style={{ marginTop: "-5px" }}>
-                      {course.lessions && course.lessions.length} Lessons
+                      {course.lessons && course.lessons.length} Lessons
                     </p>
                     <p
                       style={{
@@ -184,7 +184,7 @@ const CourseView = () => {
                       }
                           className="h5 pointer text-danger me-5" />
                     </Tooltip>
-                    {course.lessions && course.lessions.length < 5 ? (
+                    {course.lessons && course.lessons.length < 5 ? (
                         <Tooltip title={"minimum five lessons required to publish"}>
                           <QuestionOutlined className={"h-5 pointer text-danger me-4"}/>
                         </Tooltip>
@@ -238,11 +238,11 @@ const CourseView = () => {
             </Modal>
             <div className="row pb-5">
               <div className="col lesson-list">
-                <h4>{course && course.lessions && course.lessions.length} lessons</h4>
+                <h4>{course && course.lessons && course.lessons.length} lessons</h4>
               </div>
               <List
                   itemLayout="horizontal"
-                  dataSource={course.lessions}
+                  dataSource={course.lessons}
                   renderItem={(item, index) => (
                       <List.Item>
                         <List.Item.Meta

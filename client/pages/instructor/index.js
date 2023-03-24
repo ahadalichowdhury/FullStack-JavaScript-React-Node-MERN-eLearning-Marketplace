@@ -50,10 +50,10 @@ const InstructorIndex = () => {
                           marginTop: "-5px",
                         }}
                       >
-                        {course.lessions.length} Lessons
+                        {course.lessons.length} Lessons
                       </p>
 
-                      {course.lessions.length < 5 ? (
+                      {course.lessons.length < 5 ? (
                         <p style={myStyle} className="text-warning">
                           At least 5 lessons are required to publish a course
                         </p>

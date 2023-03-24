@@ -187,7 +187,7 @@ export const addLesson = async (req, res) => {
     const updated = await Course.findOneAndUpdate(
       { slug },
       {
-        $push: { lessions: { title, content, video, slug: slugify(title) } },
+        $push: { lessons: { title, content, video, slug: slugify(title) } },
       },
       {
         new: true,
@@ -239,7 +239,7 @@ export const removeLesson = async (req, res) => {
   }
 
   const courseDelete = await Course.findByIdAndUpdate(course._id, {
-    $pull: { lessions: { _id: lessonId } },
+    $pull: { lessons: { _id: lessonId } },
   }).exec();
 
   res.json({ ok: true });
@@ -258,12 +258,12 @@ export const updateLesson =async (req, res) => {
       return res.status(400).send("unauthorized");
     }
     const updated = await Course.findOneAndUpdate(
-        {"lessions._id": _id},{
+        {"lessons._id": _id},{
             $set: {
-                "lessions.$.title": title,
-                "lessions.$.content": content,
-                "lessions.$.video": video,
-                "lessions.$.free_preview": free_preview,
+                "lessons.$.title": title,
+                "lessons.$.content": content,
+                "lessons.$.video": video,
+                "lessons.$.free_preview": free_preview,
             }
         },{
             new: true
@@ -476,7 +476,7 @@ export const markCompleted = async (req, res) => {
             user: req.auth._id,
             course: courseId
         },{
-          $addToSet: {lessions: lessonId}
+          $addToSet: {lessons: lessonId}
         }).exec();
         // console.log("COMPLETED COURSE UPDATE", updated);
         res.json({ok: true})
@@ -485,7 +485,7 @@ export const markCompleted = async (req, res) => {
         const completed =await new CompletedModel({
             user: req.auth._id,
             course: courseId,
-            lessions: [lessonId]
+            lessons: [lessonId]
         }).save();
         // console.log("COMPLETED COURSE CREATE", completed);
         res.json({ok: true})
@@ -495,7 +495,7 @@ export const markCompleted = async (req, res) => {
 export const listCompleted = async (req, res) => {
   try{
     const list = await CompletedModel.find({user: req.auth._id, course: req.body.courseId}).exec();
-     list && res.json(list[0].lessions);
+     list && res.json(list[0].lessons);
   }catch (e) {
     console.log(e);
   }
@@ -508,7 +508,7 @@ export const markInCompleted = async (req, res) => {
       user: req.auth._id,
       course: courseId,
     },{
-      $pull: {lessions: lessonId}
+      $pull: {lessons: lessonId}
     }).exec();
     res.json({ok: true})
   }catch (e) {

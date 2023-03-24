@@ -6,7 +6,7 @@ import {LoadingOutlined, SafetyOutlined} from "@ant-design/icons";
 
 
 const SingleCourse = ({course, setShowModal, showModal, preview, setPreview, loading, handlePaidEnrollment,user, handleFreeEnrollment, enrolled, setEnrolled }) => {
-    let {name, description, price, category, image, instructor, updatedAt, lessions, paid} = course;
+    let {name, description, price, category, image, instructor, updatedAt, lessons, paid} = course;
     return (
         <div className="container-fluid">
             <div className="row">
@@ -34,16 +34,16 @@ const SingleCourse = ({course, setShowModal, showModal, preview, setPreview, loa
                         </div>
                         <div className={"col-md-4"}>
                             {/*show video preview or course image*/}
-                            {/*<pre className="text-danger">{JSON.stringify(lessions[0], null, 4)}</pre>*/}
-                            {lessions[0].video && lessions[0].video.Location ?(
+                            {/*<pre className="text-danger">{JSON.stringify(lessons[0], null, 4)}</pre>*/}
+                            {lessons[0].video && lessons[0].video.Location ?(
                                 <div onClick={()=>{
-                                    setPreview(lessions[0].video.Location);
+                                    setPreview(lessons[0].video.Location);
                                     setShowModal(!showModal);
                                 }
                                 }>
                                     <ReactPlayer
                                         className="react-player-div"
-                                        url={lessions[0].video.Location}
+                                        url={lessons[0].video.Location}
                                         width="100%"
                                         height="250px"
                                         light={image.Location}
@@ -51,7 +51,7 @@ const SingleCourse = ({course, setShowModal, showModal, preview, setPreview, loa
                                 </div>
                             ):(
                                 <>
-                                    <img src={image.Location} alt={name} className="img img-fluid" />
+                                    <img src={image && image.Location} alt={name} className="img img-fluid" />
                                 </>
                             ) }
                             {/*enroll button*/}

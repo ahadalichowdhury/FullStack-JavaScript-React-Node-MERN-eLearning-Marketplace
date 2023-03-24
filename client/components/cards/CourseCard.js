@@ -12,7 +12,7 @@ const CourseCard = ({course}) => {
                   <Card className={"font-weight-bold"}
                         cover={
                       <img
-                          src={image.Location}
+                          src={image && image.Location}
                           alt={name}
                           style={{height: "200px", objectFit: "cover"}}
                           className="p-1"

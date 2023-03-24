@@ -61,10 +61,10 @@ const SingleCourse =()=>{
      try{
          const {data} = await axios.post(`/api/v1/mark-completed`,{
              courseId: course._id,
-             lessonId: course.lessions[clicked]._id
+             lessonId: course.lessons[clicked]._id
          })
          console.log(data)
-         setCompletedLesson([...completedLesson, course.lessions[clicked]._id]);
+         setCompletedLesson([...completedLesson, course.lessons[clicked]._id]);
      }catch (e) {
          console.log(e);
      }
@@ -74,11 +74,11 @@ const SingleCourse =()=>{
         try{
             const {data}= await axios.post("/api/v1/mark-incompleted",{
                 courseId: course._id,
-                lessonId: course.lessions[clicked]._id
+                lessonId: course.lessons[clicked]._id
             })
             console.log(data);
             const all = completedLesson;
-            const index = all.indexOf(course.lessions[clicked]._id);
+            const index = all.indexOf(course.lessons[clicked]._id);
             if(index > -1){
                 all.splice(index, 1);
                 setCompletedLesson(all);
@@ -103,7 +103,7 @@ const SingleCourse =()=>{
                         inlineCollapsed={collapsed}
                         style={{height: "80vh", overflow: "scroll"}}
                     >
-                        {course.lessions && course.lessions.map((lesson, index) => (
+                        {course.lessons && course.lessons.map((lesson, index) => (
                             <Menu.Item
                                 key={index}
                                 onClick={() => setClicked(index)}
@@ -123,8 +123,8 @@ const SingleCourse =()=>{
                     {clicked !== -1 ? (
                         <>
                             <div className={"d-flex align-items-center justify-content-between col alert alert-primary square"}>
-                                <h6>{course.lessions[clicked].title.substring(0, 30)}</h6>
-                                    {completedLesson.includes(course.lessions[clicked]._id) ? (
+                                <h6>{course.lessons[clicked].title.substring(0, 30)}</h6>
+                                    {completedLesson.includes(course.lessons[clicked]._id) ? (
                                         <span className={"pointer float-end"} onClick={markInCompleted}>
                                            Mark as InCompleted
                                         </span>
@@ -134,23 +134,23 @@ const SingleCourse =()=>{
                                         </span>
                                     )}
                             </div>
-                            {course.lessions[clicked].video && course.lessions[clicked].video.Location && (
+                            {course.lessons[clicked].video && course.lessons[clicked].video.Location && (
                                 <>
                                     <div className={"wrapper"}>
                                         <ReactPlayer
                                             className={"player"}
-                                            url={course.lessions[clicked].video.Location}
+                                            url={course.lessons[clicked].video.Location}
                                             controls={true}
                                             width={"100%"}
                                             height={"100%"}
-                                            onEnded={markCompleted()}
+                                            onEnded={()=>markCompleted()}
                                         />
                                     </div>
                                 </>
                             )}
                             <ReactMarkdown
                                 className={"single-post"}
-                                children={course.lessions && course.lessions[clicked].content}/>
+                                children={course.lessons && course.lessons[clicked].content}/>
                         </>
                     ):(
                         <>
