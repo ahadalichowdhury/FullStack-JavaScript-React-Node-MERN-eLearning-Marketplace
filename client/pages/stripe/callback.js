@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Context } from "@/context";
 import { toast } from "react-toastify";
-import UserRoute from "../../Components/Routes/UserRoute";
+import UserRoute from "@/Components/Routes/UserRoute";
 import { SyncOutlined } from "@ant-design/icons";
 
 const StripeCallback = () => {
