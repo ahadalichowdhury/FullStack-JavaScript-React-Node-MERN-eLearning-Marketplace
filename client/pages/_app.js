@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "../context/index";
 
 export default function App({ Component, pageProps }) {
+  
   return (
     <Provider>
       <ToastContainer position="top-center" />
